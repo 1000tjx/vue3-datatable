@@ -6,6 +6,7 @@
 - You can handle the events (**onPageNext / onPagePrev**) - insure to set **handleServer** to **true** when you get the data from server
 - Pagination
 - Custom cell render
+- You can select the columns you want to render
 
 # Usage 
 
