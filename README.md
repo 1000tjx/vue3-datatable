@@ -1,6 +1,12 @@
 # DataTable for Vue3
 - Bootstrap5 is required
 
+# Features
+- You can toggle sort by clicking on the column head
+- You can handle the events (onPageNext / onPagePrev) - insure to set **handleServer** to true when you get the data from server
+- Pagination
+- Custom cell render
+
 # Usage 
 
 ```vue
