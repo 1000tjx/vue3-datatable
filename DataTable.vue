@@ -191,7 +191,7 @@ export default {
               {this.renderPaginationButtons}
             </div>
           </div>
-          <div id="rows-count">{this.getRowsCount} total row(s)</div>
+          <div id="rows-count">{this.getRowsCount} = Total row(s)</div>
         </div>
       </div>
     );
