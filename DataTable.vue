@@ -24,6 +24,17 @@ export default {
     };
   },
   methods: {
+    getDeepValue(row, colName) {
+      let names = colName.split(".");
+      if (names.length === 0) return null;
+      else if (names.length === 1) return row[colName];
+
+      let finalVal = row;
+      for (let name of names) {
+        finalVal = finalVal[name];
+      }
+      return finalVal;
+    },
     updateSortCol(col) {
       if (col !== this.sortCol) {
         this.sortEquation = 1;
@@ -103,7 +114,7 @@ export default {
         if (col.render) {
           return col.render(row);
         } else {
-          return row[col.name];
+          return this.getDeepValue(row, col.name);
         }
       };
     },
@@ -114,7 +125,7 @@ export default {
           return rows.filter((row) => {
             return this.colsToSearch.some((c) => {
               if (!c) return false;
-              return row[c.name]
+              return this.getDeepValue(row, c.name)
                 .toString()
                 .toLowerCase()
                 .includes(this.query.toLowerCase());
