@@ -114,13 +114,15 @@ export default {
     },
     renderSortEquation() {
       return (col) => {
-        if (this.sortCol !== col) return "=";
+        if (this.sortCol !== col) return <span class="sort-icon">=</span>;
         if (this.sortEquation === 0) {
           return "=";
         } else if (this.sortEquation === 1) {
-          return <i class="bi bi-arrow-up-short"></i>;
+          //return <i class="bi bi-arrow-up-short"></i>;
+          return <i class="bi bi-sort-up-alt sort-icon"></i>;
         } else if (this.sortEquation === 2) {
-          return <i class="bi bi-arrow-down-short"></i>;
+          //return <i class="bi bi-arrow-down-short"></i>;
+          return <i class="bi bi-sort-down-alt sort-icon"></i>;
         }
       };
     },
@@ -135,7 +137,7 @@ export default {
     return (
       <div>
         <div class="table-responsive">
-          <table class="table table-striped table-sm table-bordered">
+          <table class="table table-sm table-bordered table-striped">
             <thead class="table-dark">
               <tr>
                 {cols.map((col, colIndex) => {
@@ -149,7 +151,10 @@ export default {
                       }}
                       onClick={() => this.updateSortCol(col.name)}
                     >
-                      {col.title} {this.renderSortEquation(col.name)}
+                      <div>
+                        <span>{col.title}</span>
+                        <span>{this.renderSortEquation(col.name)}</span>
+                      </div>
                     </th>
                   );
                 })}
@@ -184,11 +189,30 @@ export default {
 </script>
 
 <style scoped>
-th {
-  cursor: pointer;
-}
 #dt-pagination {
   display: flex;
   justify-content: space-between;
+}
+#rows-count {
+  font-size: 0.85em;
+}
+table tbody {
+  font-size: 0.85em;
+}
+button {
+  font-size: 0.75em;
+}
+
+th {
+  cursor: pointer;
+  font-size: 0.9em;
+}
+.sort-icon {
+  font-size: 1.2em;
+}
+th > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 </style>
