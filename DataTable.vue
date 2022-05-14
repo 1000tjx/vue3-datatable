@@ -27,7 +27,7 @@ export default {
     getDeepValue(row, colName) {
       let names = colName.split(".");
       if (names.length === 0) return null;
-      else if (names.length === 1) return row[colName];
+      else if (names.length === 1) return row[names[0]];
 
       let finalVal = row;
       for (let name of names) {
