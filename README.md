@@ -10,7 +10,7 @@
 - You can set a custom color for focused row
 - You can search on multiple columns
 - Columns can be removed, added to filter to search
-- You can make custom search hndlaer "**onSearch**" this prop is a function (query, cols) => {}
+- You can make custom search handler "**onSearch**" this prop is a function (query, cols) => {}
 
 # Usage 
 
