@@ -76,7 +76,7 @@ export default {
           <i class="bi bi-arrow-left-short"></i>
         </button>,
         <button type="button" class="btn btn-dark btn-sm" disabled>
-          {this.currentPage + 1}
+          {this.currentPage + 1} / {this.pages}
         </button>,
         <button
           type="button"
