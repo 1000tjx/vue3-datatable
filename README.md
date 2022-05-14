@@ -7,6 +7,7 @@
 - Pagination
 - Custom cell render
 - You can select columns you want to render
+- You can set a custom color for focused row
 
 # Usage 
 
@@ -33,6 +34,7 @@
       :onPagePrev="null"
       :rowsCount="null"
       :serverHandle="null"
+      :focusedRowColor="null"
     />
   </div>
 </template>
