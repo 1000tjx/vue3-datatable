@@ -26,12 +26,15 @@ export default {
   methods: {
     getDeepValue(row, colName) {
       let names = colName.split(".");
-      if (names.length === 0) return "";
-      else if (names.length === 1) return row[names[0]];
+      let finalVal = "";
+      if (names.length === 1) finalVal = row[names[0]];
 
-      let finalVal = row;
+      finalVal = row;
       for (let name of names) {
         finalVal = finalVal[name];
+      }
+      if (!isNaN(Number(finalVal))) {
+        finalVal = Number(finalVal);
       }
       return finalVal;
     },
@@ -149,11 +152,17 @@ export default {
       } else {
         if (this.sortEquation === 1) {
           rows = rows.sort((a, b) =>
-            a[this.sortCol] > b[this.sortCol] ? 1 : -1
+            this.getDeepValue(a, this.sortCol) >
+            this.getDeepValue(b, this.sortCol)
+              ? 1
+              : -1
           );
         } else if (this.sortEquation === 2) {
           rows = rows.sort((a, b) =>
-            a[this.sortCol] < b[this.sortCol] ? 1 : -1
+            this.getDeepValue(a, this.sortCol) <
+            this.getDeepValue(b, this.sortCol)
+              ? 1
+              : -1
           );
         }
       }
