@@ -1,5 +1,9 @@
 # DataTable for Vue3
+  DataTable is an easy way to handle your rows in a table with the ability to customize your columns and rows
+
+# Requirements
 - Bootstrap5 is required
+- Bootstrap icons
 
 # Features
 - You can toggle sort by clicking on the column head
