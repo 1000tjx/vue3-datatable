@@ -8,6 +8,7 @@ export default {
     "rowsCount",
     "onPageNext",
     "onPagePrev",
+    "onSearch",
     "serverHandle",
   ],
   setup() {},
@@ -17,11 +18,12 @@ export default {
       sortEquation: 0,
       currentPage: 0,
       focusedRow: null,
+      colsToSearch: [...this.cols],
+      query: "",
     };
   },
   methods: {
     updateSortCol(col) {
-      console.log(this.maxPages);
       if (col !== this.sortCol) {
         this.sortEquation = 1;
       } else {
@@ -40,6 +42,14 @@ export default {
       if (this.onPagePrev) {
         this.onPagePrev(this.currentPage);
       }
+    },
+    addToSearchCol(col) {
+      if (!this.colsToSearch.find((c) => c.name === col.name)) {
+        this.colsToSearch.push(col);
+      }
+    },
+    removeToSearchCol(col) {
+      this.colsToSearch = this.colsToSearch.filter((c) => c.name !== col.name);
     },
   },
   computed: {
@@ -89,11 +99,33 @@ export default {
         }
       };
     },
+    queryFilter() {
+      return (rows) => {
+        if (!this.onSearch) {
+          if (this.colsToSearch.length === 0) return rows;
+          return rows.filter((row) => {
+            return this.colsToSearch.some((c) => {
+              if (!c) return false;
+              return row[c.name]
+                .toString()
+                .toLowerCase()
+                .includes(this.query.toLowerCase());
+            });
+          });
+        } else {
+          this.onSearch(this.query, this.colsToSearch);
+          return rows;
+        }
+      };
+    },
     dataFilter() {
       let rows = [...this.data].map((row, index) => {
         row._dataTableSortNumber = index;
         return row;
       });
+      // search
+      rows = this.queryFilter(rows);
+      // sorting
       if (!this.sortCol || this.sortEquation === 0) {
       } else {
         if (this.sortEquation === 1) {
@@ -106,6 +138,7 @@ export default {
           );
         }
       }
+      // handle pagination
       if (!this.serverHandle) {
         rows = rows.slice(
           this.currentPage * this.getRowsPerPage,
@@ -128,16 +161,69 @@ export default {
         }
       };
     },
+    renderColsToSearch() {
+      let items = this.colsToSearch.map((col, index) => {
+        return (
+          <button
+            type="button"
+            class="btn btn-sm btn-success"
+            key={index}
+            onClick={() => this.removeToSearchCol(col)}
+          >
+            <span>
+              <i class="bi bi-x-lg"></i>
+            </span>
+            <span> {col.title} </span>
+          </button>
+        );
+      });
+      return items;
+    },
+    renderFilterIcon() {
+      return (col) => {
+        if (this.colsToSearch.find((c) => c.name === col.name)) {
+          return (
+            <i
+              title="Add to filter"
+              class="bi bi-funnel-fill"
+              onClick={() => this.removeToSearchCol(col)}
+            ></i>
+          );
+        }
+        return (
+          <i
+            title="Add to filter"
+            class="bi bi-funnel"
+            onClick={() => this.addToSearchCol(col)}
+          ></i>
+        );
+      };
+    },
   },
-
   render() {
     let cols = this.cols;
     let rows = this.dataFilter;
-    if (rows.length === 0) {
-      return "No data to show.";
-    }
     return (
       <div>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">
+              <i class="bi bi-search"></i>
+            </span>
+          </div>
+          <input
+            onInput={(e) => (this.query = e.target.value)}
+            value={this.query}
+            placeholder="Search..."
+            type="text"
+            class="form-control"
+            aria-label="Search"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+        <div class="btn-group">{this.renderColsToSearch}</div>
+        <br />
+        <br />
         <div class="table-responsive">
           <table class="table table-sm table-bordered table-striped">
             <thead class="table-dark">
@@ -151,11 +237,16 @@ export default {
                         minWidth: col.width ?? "auto",
                         width: col.width ?? "auto",
                       }}
-                      onClick={() => this.updateSortCol(col.name)}
                     >
                       <div>
-                        <span>{col.title}</span>
-                        <span>{this.renderSortEquation(col.name)}</span>
+                        <div
+                          style={{ flex: 1 }}
+                          onClick={() => this.updateSortCol(col.name)}
+                        >
+                          <span>{this.renderSortEquation(col.name)}</span>
+                          <span> {col.title} </span>
+                        </div>
+                        <div>{this.renderFilterIcon(col)}</div>
                       </div>
                     </th>
                   );
