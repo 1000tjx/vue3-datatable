@@ -33,7 +33,7 @@
     <DataTable
       :data="[
         { a: 10, b: 55, child: { age: 10 } } },
-        { a: 9, b: 32, child: { age: 12 }},
+        { a: 9, b: 32, child: { age: 12 } },
         { a: 66, b: 213, child: { age: 33 } },
       ]"
       :cols="[
