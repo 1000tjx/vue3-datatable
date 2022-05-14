@@ -157,7 +157,7 @@ export default {
           return <i class="bi bi-sort-up-alt sort-icon"></i>;
         } else if (this.sortEquation === 2) {
           //return <i class="bi bi-arrow-down-short"></i>;
-          return <i class="bi bi-sort-down-alt sort-icon"></i>;
+          return <i class="bi bi-sort-down sort-icon"></i>;
         }
       };
     },
