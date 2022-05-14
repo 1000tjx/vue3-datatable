@@ -8,8 +8,9 @@ export default {
     "rowsCount",
     "onPageNext",
     "onPagePrev",
-    "onSearch",
     "serverHandle",
+    "onSearch",
+    "showToggleAllFilters",
   ],
   setup() {},
   data() {
@@ -50,6 +51,13 @@ export default {
     },
     removeToSearchCol(col) {
       this.colsToSearch = this.colsToSearch.filter((c) => c.name !== col.name);
+    },
+    toggleAllFilters() {
+      if (this.colsToSearch.length < this.cols.length) {
+        this.colsToSearch = [...this.cols];
+      } else {
+        this.colsToSearch = [];
+      }
     },
   },
   computed: {
@@ -209,8 +217,23 @@ export default {
     return (
       <div>
         <div class="input-group input-group-sm mb-3">
+          {this.showToggleAllFilters ? (
+            <div
+              class="input-group-prepend"
+              style={{ cursor: "pointer" }}
+              onClick={this.toggleAllFilters}
+            >
+              <span class="input-group-text">
+                {this.colsToSearch.length > 0 ? (
+                  <i class="bi bi-funnel-fill"></i>
+                ) : (
+                  <i class="bi bi-funnel"></i>
+                )}
+              </span>
+            </div>
+          ) : null}
           <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">
+            <span class="input-group-text" id="search">
               <i class="bi bi-search"></i>
             </span>
           </div>
@@ -220,8 +243,7 @@ export default {
             placeholder="Search..."
             type="text"
             class="form-control"
-            aria-label="Search"
-            aria-describedby="inputGroup-sizing-sm"
+            aria-label="search"
           />
         </div>
         <div class="btn-group">{this.renderColsToSearch}</div>
