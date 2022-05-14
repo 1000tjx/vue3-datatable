@@ -17,6 +17,7 @@
 - Columns can be toggle all (add all columns, remove all columns from filter)
 - You can customize if you want to display the icon of toggle all columns or not using **showToggleAllFilters** prop
 - You can make custom search handler "**onSearch**" prop, this prop is a function **(query, cols) => {}**
+- Neasted Objects (search / value getter)
 
 # Usage 
 - First you need to add bootstrap5 css to your html header page
@@ -31,13 +32,14 @@
   <div id="cont">
     <DataTable
       :data="[
-        { a: 10, b: 55 },
-        { a: 9, b: 32 },
-        { a: 66, b: 213 },
+        { a: 10, b: 55, child: { age: 10 } } },
+        { a: 9, b: 32, child: { age: 12 }},
+        { a: 66, b: 213, child: { age: 33 } },
       ]"
       :cols="[
         { name: '_dataTableSortNumber', title: 'No.', width: '100px' },
         { name: 'a', title: 'First Col' },
+        { name: 'child.age', title: 'Child Age' },
         {
           name: 'b',
           title: 'Second Col',
