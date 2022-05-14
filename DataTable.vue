@@ -24,7 +24,7 @@ export default {
     };
   },
   methods: {
-    getDeepValue(row, colName) {
+    getDeepValue(row, colName, forSort = false) {
       let names = colName.split(".");
       let finalVal = "";
       if (names.length === 1) finalVal = row[names[0]];
@@ -33,7 +33,7 @@ export default {
       for (let name of names) {
         finalVal = finalVal[name];
       }
-      if (!isNaN(Number(finalVal))) {
+      if (!isNaN(Number(finalVal)) && forSort) {
         finalVal = Number(finalVal);
       }
       return finalVal;
@@ -152,15 +152,15 @@ export default {
       } else {
         if (this.sortEquation === 1) {
           rows = rows.sort((a, b) =>
-            this.getDeepValue(a, this.sortCol) >
-            this.getDeepValue(b, this.sortCol)
+            this.getDeepValue(a, this.sortCol, true) >
+            this.getDeepValue(b, this.sortCol, true)
               ? 1
               : -1
           );
         } else if (this.sortEquation === 2) {
           rows = rows.sort((a, b) =>
-            this.getDeepValue(a, this.sortCol) <
-            this.getDeepValue(b, this.sortCol)
+            this.getDeepValue(a, this.sortCol, true) <
+            this.getDeepValue(b, this.sortCol, true)
               ? 1
               : -1
           );
