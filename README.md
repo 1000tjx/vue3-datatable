@@ -17,7 +17,7 @@
 - Columns can be toggle all (add all columns, remove all columns from filter)
 - You can customize if you want to display the icon of toggle all columns or not using **showToggleAllFilters** prop
 - You can make custom search handler "**onSearch**" prop, this prop is a function **(query, cols) => {}**
-- Neasted Objects (search / value getter)
+- Nested Objects (search / value getter)
 
 # Usage 
 - First you need to add bootstrap5 css to your html header page
