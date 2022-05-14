@@ -26,7 +26,7 @@ export default {
   methods: {
     getDeepValue(row, colName) {
       let names = colName.split(".");
-      if (names.length === 0) return null;
+      if (names.length === 0) return "";
       else if (names.length === 1) return row[names[0]];
 
       let finalVal = row;
@@ -126,7 +126,7 @@ export default {
             return this.colsToSearch.some((c) => {
               if (!c) return false;
               return this.getDeepValue(row, c.name)
-                .toString()
+                ?.toString()
                 .toLowerCase()
                 .includes(this.query.toLowerCase());
             });
