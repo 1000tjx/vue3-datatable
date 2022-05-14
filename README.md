@@ -14,6 +14,8 @@
 - You can set a custom color for focused row
 - You can search on multiple columns
 - Columns can be removed, added to filter to search
+- Columns can be toggle all (add all columns, remove all columns from filter)
+- You can customize if you want to display the icon of toggle all columns or not
 - You can make custom search handler "**onSearch**" this prop is a function (query, cols) => {}
 
 # Usage 
@@ -51,6 +53,7 @@
       :onSearch="null"
       :onSearch="(query, cols) => serverSearch(query, cols)"
       :onSearch="serverSearch"
+      :showToggleAllFilters="true"
     />
   </div>
 </template>
