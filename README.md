@@ -8,6 +8,9 @@
 - Custom cell render
 - You can select columns you want to render
 - You can set a custom color for focused row
+- You can search on multiple columns
+- Columns can be removed, added to filter to search
+- You can make custom search hndlaer "**onSearch**" this prop is a function (query, cols) => {}
 
 # Usage 
 
@@ -35,6 +38,9 @@
       :rowsCount="null"
       :serverHandle="null"
       :focusedRowColor="null"
+      :onSearch="null"
+      :onSearch="(query, cols) => serverSearch(query, cols)"
+      :onSearch="serverSearch"
     />
   </div>
 </template>
@@ -44,6 +50,9 @@ import DataTable from "@/components/DataTable.vue";
 export default {
   components: { DataTable },
   methods: {
+    serverSearch(query, cols) {
+      console.log(query, cols);
+    },
     renderSeondColumn(row) {
       return (
         <div style="color: red" onClick={() => alert(row.b)}>
