@@ -3,7 +3,7 @@ export default {
   props: [
     "data",
     "cols",
-    "selectedRowColor",
+    "focusedRowColor",
     "rowsPerPage",
     "rowsCount",
     "onPageNext",
@@ -16,7 +16,7 @@ export default {
       sortCol: null,
       sortEquation: 0,
       currentPage: 0,
-      selectedRow: null,
+      focusedRow: null,
     };
   },
   methods: {
@@ -169,13 +169,11 @@ export default {
                     key={rowIndex}
                     style={{
                       backgroundColor:
-                        row._dataTableSortNumber === this.selectedRow
-                          ? this.selectedRowColor || "#e1ffde"
+                        row._dataTableSortNumber === this.focusedRow
+                          ? this.focusedRowColor || "#e1ffde"
                           : "",
                     }}
-                    onClick={() =>
-                      (this.selectedRow = row._dataTableSortNumber)
-                    }
+                    onClick={() => (this.focusedRow = row._dataTableSortNumber)}
                   >
                     {cols.map((col, colIndex) => {
                       return <td key={colIndex}>{this.renderRow(row, col)}</td>;
@@ -227,8 +225,5 @@ th > div {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-}
-.selected-row {
-  background-color: red;
 }
 </style>
