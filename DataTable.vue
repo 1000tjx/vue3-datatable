@@ -203,6 +203,9 @@ export default {
   render() {
     let cols = this.cols;
     let rows = this.dataFilter;
+    if (rows.length === 0 && !this.query?.trim()) {
+      return <p>No data to show.</p>;
+    }
     return (
       <div>
         <div class="input-group input-group-sm mb-3">
