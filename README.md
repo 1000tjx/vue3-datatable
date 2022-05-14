@@ -15,7 +15,7 @@
 - You can search on multiple columns
 - Columns can be removed, added to filter to search
 - Columns can be toggle all (add all columns, remove all columns from filter)
-- You can customize if you want to display the icon of toggle all columns or not
+- You can customize if you want to display the icon of toggle all columns or not using **showToggleAllFilters** prop
 - You can make custom search handler "**onSearch**" this prop is a function (query, cols) => {}
 
 # Usage 
