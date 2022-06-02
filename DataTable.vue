@@ -314,10 +314,11 @@ export default {
                   <tr
                     key={rowIndex}
                     style={{
-                      backgroundColor:
-                        row._dataTableSortNumber === this.focusedRow
-                          ? this.focusedRowColor || "#e1ffde"
-                          : "",
+                      backgroundColor: row.__bg_color__
+                        ? row.__bg_color__
+                        : row._dataTableSortNumber === this.focusedRow
+                        ? this.focusedRowColor || "#e1ffde"
+                        : "",
                     }}
                     onClick={() => (this.focusedRow = row._dataTableSortNumber)}
                   >
