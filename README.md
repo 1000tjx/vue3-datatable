@@ -18,7 +18,7 @@
 - You can customize if you want to display the icon of toggle all columns or not using **showToggleAllFilters** prop
 - You can make custom search handler "**onSearch**" prop, this prop is a function **(query, cols) => {}**
 - Nested Objects (search / value getter)
-
+- You can add custom color for each row depending on some value, just add __bg_color__ propert for the row.
 # Usage 
 - First you need to add bootstrap5 css to your html header page
   ```html
@@ -32,7 +32,7 @@
   <div id="cont">
     <DataTable
       :data="[
-        { a: 10, b: 55, child: { age: 10 } } },
+        { a: 10, b: 55, child: { age: 10 } }, __bg_color__: 'steelblue' },
         { a: 9, b: 32, child: { age: 12 } },
         { a: 66, b: 213, child: { age: 33 } },
       ]"
