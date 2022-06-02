@@ -18,7 +18,7 @@
 - You can customize if you want to display the icon of toggle all columns or not using **showToggleAllFilters** prop
 - You can make custom search handler "**onSearch**" prop, this prop is a function **(query, cols) => {}**
 - Nested Objects (search / value getter)
-- You can add custom color for each row depending on some value, just add __bg_color__ propert for the row.
+- You can add custom color for each row depending on some value, just add \_\_bg_color\_\_ propert for the row.
 # Usage 
 - First you need to add bootstrap5 css to your html header page
   ```html
