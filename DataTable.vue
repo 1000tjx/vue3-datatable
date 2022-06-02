@@ -76,7 +76,9 @@ export default {
   },
   computed: {
     pages() {
-      let p = parseInt(this.data.length / this.getRowsPerPage);
+      let p = parseInt(
+        (this.rowsCount ?? this.data.length) / this.getRowsPerPage
+      );
       if (this.data.length % this.getRowsPerPage > 0) ++p;
       return p;
     },
