@@ -211,6 +211,9 @@ export default {
       return items;
     },
     renderFilterIcon() {
+      if (!this.showSearchInput) {
+        return () => "";
+      }
       return (col) => {
         if (this.colsToSearch.find((c) => c.name === col.name)) {
           return (
