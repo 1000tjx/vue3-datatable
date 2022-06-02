@@ -11,6 +11,7 @@ export default {
     "serverHandle",
     "onSearch",
     "showToggleAllFilters",
+    "showSearchInput",
   ],
   setup() {},
   data() {
@@ -238,39 +239,43 @@ export default {
     }
     return (
       <div>
-        <div class="input-group input-group-sm mb-3">
-          {this.showToggleAllFilters ? (
-            <div
-              class="input-group-prepend"
-              style={{ cursor: "pointer" }}
-              onClick={this.toggleAllFilters}
-            >
-              <span class="input-group-text">
-                {this.colsToSearch.length > 0 ? (
-                  <i class="bi bi-funnel-fill"></i>
-                ) : (
-                  <i class="bi bi-funnel"></i>
-                )}
-              </span>
+        {!this.showSearchInput ? null : (
+          <div>
+            <div class="input-group input-group-sm mb-3">
+              {this.showToggleAllFilters ? (
+                <div
+                  class="input-group-prepend"
+                  style={{ cursor: "pointer" }}
+                  onClick={this.toggleAllFilters}
+                >
+                  <span class="input-group-text">
+                    {this.colsToSearch.length > 0 ? (
+                      <i class="bi bi-funnel-fill"></i>
+                    ) : (
+                      <i class="bi bi-funnel"></i>
+                    )}
+                  </span>
+                </div>
+              ) : null}
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="bi bi-search"></i>
+                </span>
+              </div>
+              <input
+                onInput={(e) => (this.query = e.target.value)}
+                value={this.query}
+                placeholder="Search..."
+                type="text"
+                class="form-control"
+                aria-label="search"
+              />
             </div>
-          ) : null}
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search">
-              <i class="bi bi-search"></i>
-            </span>
+            <div class="btn-group">{this.renderColsToSearch}</div>
+            <br />
+            <br />
           </div>
-          <input
-            onInput={(e) => (this.query = e.target.value)}
-            value={this.query}
-            placeholder="Search..."
-            type="text"
-            class="form-control"
-            aria-label="search"
-          />
-        </div>
-        <div class="btn-group">{this.renderColsToSearch}</div>
-        <br />
-        <br />
+        )}
         <div class="table-responsive">
           <table class="table table-sm table-bordered table-striped">
             <thead class="table-dark">
