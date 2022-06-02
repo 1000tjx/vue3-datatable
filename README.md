@@ -43,7 +43,7 @@
         {
           name: 'b',
           title: 'Second Col',
-          render: (row) => renderSeondColumn(row),
+          render: (row) => renderSecondColumn(row),
         },
       ]"
       :rowsPerPage="1"
@@ -69,7 +69,7 @@ export default {
     serverSearch(query, cols) {
       console.log(query, cols);
     },
-    renderSeondColumn(row) {
+    renderSecondColumn(row) {
       return (
         <div style="color: red" onClick={() => alert(row.b)}>
           {row.b}
