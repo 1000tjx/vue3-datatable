@@ -56,6 +56,7 @@
       :onSearch="(query, cols) => serverSearch(query, cols)"
       :onSearch="serverSearch"
       :showToggleAllFilters="true"
+      :showSearchInput="true"
     />
   </div>
 </template>
