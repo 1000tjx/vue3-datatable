@@ -279,13 +279,14 @@ export default {
             <br />
           </div>
         )}
-        <div class="table-responsive">
+        <div class="table-responsive scrollable-table-wrapper">
           <table class="table table-sm table-bordered table-striped">
             <thead class="table-dark">
               <tr>
                 {cols.map((col, colIndex) => {
                   return (
                     <th
+                      class="dt-th"
                       scope="col"
                       key={colIndex}
                       style={{
@@ -372,5 +373,19 @@ th > div {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+.dt-th {
+  white-space: nowrap;
+}
+div.scrollable-table-wrapper {
+  height: 500px;
+  overflow: auto;
+}
+
+thead tr th {
+  position: sticky;
+  top: 0;
+  background-color: black;
+  border: 0px solid gray;
 }
 </style>
