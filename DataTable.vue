@@ -378,7 +378,7 @@ th > div {
   white-space: nowrap;
 }
 div.scrollable-table-wrapper {
-  height: 500px;
+  max-height: 500px;
   overflow: auto;
 }
 
