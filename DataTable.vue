@@ -32,7 +32,9 @@ export default {
 
       finalVal = row;
       for (let name of names) {
-        finalVal = finalVal[name];
+        if (finalVal) {
+          finalVal = finalVal[name];
+        }
       }
       if (!isNaN(Number(finalVal)) && forSort) {
         finalVal = Number(finalVal);
