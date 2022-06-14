@@ -200,7 +200,7 @@ export default {
           <button
             type="button"
             class="btn btn-sm btn-success"
-            key={index}
+            key={index + "-scol"}
             onClick={() => this.removeToSearchCol(col)}
           >
             <span>
@@ -290,10 +290,10 @@ export default {
                     <th
                       class="dt-th"
                       scope="col"
-                      key={colIndex}
+                      key={colIndex + "-th"}
                       style={{
-                        minWidth: col.width ?? "auto",
-                        width: col.width ?? "auto",
+                        minWidth: col.width || "auto",
+                        width: col.width || "auto",
                       }}
                     >
                       <div>
@@ -315,7 +315,7 @@ export default {
               {rows.map((row, rowIndex) => {
                 return (
                   <tr
-                    key={rowIndex}
+                    key={rowIndex + "row"}
                     style={{
                       backgroundColor: row.__bg_color__
                         ? row.__bg_color__
@@ -326,7 +326,17 @@ export default {
                     onClick={() => (this.focusedRow = row._dataTableSortNumber)}
                   >
                     {cols.map((col, colIndex) => {
-                      return <td key={colIndex}>{this.renderRow(row, col)}</td>;
+                      return (
+                        <td
+                          key={colIndex + "-td"}
+                          style={{
+                            minWidth: col.width || "auto",
+                            width: col.width || "auto",
+                          }}
+                        >
+                          {this.renderRow(row, col)}
+                        </td>
+                      );
                     })}
                   </tr>
                 );
