@@ -12,6 +12,8 @@ export default {
     "onSearch",
     "showToggleAllFilters",
     "showSearchInput",
+    "height",
+    "maxHeight",
   ],
   setup() {},
   data() {
@@ -281,7 +283,13 @@ export default {
             <br />
           </div>
         )}
-        <div class="table-responsive scrollable-table-wrapper">
+        <div
+          class="table-responsive scrollable-table-wrapper"
+          style={{
+            height: this.height || "500px",
+            maxHeight: this.maxHeight || "750px",
+          }}
+        >
           <table class="table table-sm table-bordered table-striped">
             <thead class="table-dark">
               <tr>
@@ -390,7 +398,6 @@ th > div {
   white-space: nowrap;
 }
 div.scrollable-table-wrapper {
-  max-height: 500px;
   overflow: auto;
 }
 
