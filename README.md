@@ -19,6 +19,9 @@
 - You can make custom search handler "**onSearch**" prop, this prop is a function **(query, cols) => {}**
 - Nested Objects (search / value getter)
 - You can add custom color for each row depending on some value, just add \_\_bg_color\_\_ propert for the row.
+- hide/show search input
+- set (**height/maxHeight**) of the table
+
 # Usage 
 - First you need to add bootstrap5 css to your html header page
   ```html
@@ -57,6 +60,8 @@
       :onSearch="serverSearch"
       :showToggleAllFilters="true"
       :showSearchInput="true"
+      height='500px'
+      maxHeight='750px'
     />
   </div>
 </template>
