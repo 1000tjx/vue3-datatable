@@ -81,17 +81,15 @@ export default {
   },
   computed: {
     pages() {
-      let p = parseInt(
-        (this.rowsCount ?? this.data.length) / this.getRowsPerPage
-      );
-      if (this.data.length % this.getRowsPerPage > 0) ++p;
+      console.log(parseFloat(this.getRowsCount / this.getRowsPerPage));
+      let p = Math.ceil(parseFloat(this.getRowsCount / this.getRowsPerPage));
       return p;
     },
     getRowsCount() {
       return this.rowsCount ?? this.data.length;
     },
     getRowsPerPage() {
-      return this.rowsPerPage || 2;
+      return this.rowsPerPage ?? 2;
     },
     renderPaginationButtons() {
       let pageScaler = Math.max(this.pages - 1, 0);
@@ -304,14 +302,12 @@ export default {
                         width: col.width || "auto",
                       }}
                     >
-                      <div>
-                        <div
-                          style={{ flex: 1 }}
-                          onClick={() => this.updateSortCol(col.name)}
-                        >
+                      <div class="th-div">
+                        <div onClick={() => this.updateSortCol(col.name)}>
                           <span>{this.renderSortEquation(col.name)}</span>
                           <span> {col.title} </span>
                         </div>
+                        <div style={{ flex: 1, width: "20px" }}></div>
                         <div>{this.renderFilterIcon(col)}</div>
                       </div>
                     </th>
@@ -400,7 +396,6 @@ th > div {
 }
 .dt-th {
   white-space: nowrap;
-  min-width: max-content;
 }
 div.scrollable-table-wrapper {
   overflow: auto;
@@ -410,6 +405,36 @@ thead tr th {
   position: sticky;
   top: 0;
   background-color: black;
-  border: 0px solid gray;
+  border: 0px solid black !important;
+}
+.th-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.th-div:nth-child(1) {
+  min-width: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 5px !important;
+  height: 8px !important;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px black !important; */
+  border-radius: 10px;
+  background-color: transparent !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(155, 155, 155) !important;
+  border-radius: 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: dimgray !important;
 }
 </style>
