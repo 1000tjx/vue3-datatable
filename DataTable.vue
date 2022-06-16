@@ -386,6 +386,10 @@ th {
   cursor: pointer;
   font-size: 0.9em;
 }
+td {
+  white-space: nowrap;
+  min-width: max-content;
+}
 .sort-icon {
   font-size: 1.2em;
 }
@@ -396,6 +400,7 @@ th > div {
 }
 .dt-th {
   white-space: nowrap;
+  min-width: max-content;
 }
 div.scrollable-table-wrapper {
   overflow: auto;
