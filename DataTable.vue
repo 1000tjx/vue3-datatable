@@ -319,6 +319,7 @@ export default {
               {rows.map((row, rowIndex) => {
                 return (
                   <tr
+                    is="single-table-row"
                     key={rowIndex + "row"}
                     style={{
                       backgroundColor: row.__bg_color__
