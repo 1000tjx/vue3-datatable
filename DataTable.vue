@@ -320,7 +320,8 @@ export default {
                 return (
                   <tr
                     is="single-table-row"
-                    key={rowIndex + "row"}
+                    key={rowIndex + Math.random()}
+                    id={rowIndex + Math.random()}
                     style={{
                       backgroundColor: row.__bg_color__
                         ? row.__bg_color__
