@@ -81,7 +81,6 @@ export default {
   },
   computed: {
     pages() {
-      console.log(parseFloat(this.getRowsCount / this.getRowsPerPage));
       let p = Math.ceil(parseFloat(this.getRowsCount / this.getRowsPerPage));
       return p;
     },
@@ -284,7 +283,7 @@ export default {
         <div
           class="table-responsive scrollable-table-wrapper"
           style={{
-            height: this.height || "500px",
+            height: this.height || "auto",
             maxHeight: this.maxHeight || "750px",
           }}
         >
